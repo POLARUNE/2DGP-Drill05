@@ -34,7 +34,7 @@ dir = 0
 while running:
     clear_canvas()
     bg.draw(400, 300)
-    character.clip_draw(frame*50,20,20,20,x,90)
+    character.clip_draw(frame*32,192,32,32,x,90,150,150)
     update_canvas()
     handle_events()
     frame = (frame + 1) % 8
