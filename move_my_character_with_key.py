@@ -49,8 +49,16 @@ while running:
     update_canvas()
     handle_events()
     frame = (frame + 1) % 8
-    x += dirx * 10
-    y += diry * 10
+
+    if 0<x<800 or (x<=0 and dirx>0) or (x>=800 and dirx<0):
+        x += dirx * 10
+    else:
+        pass
+
+    if 0<y<600 or (y<=0 and diry>0) or (y>=600 and diry<0):
+        y += diry * 10
+    else:
+        pass
     delay(0.05)
 
 close_canvas()
