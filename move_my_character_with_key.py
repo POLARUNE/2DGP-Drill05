@@ -7,7 +7,7 @@ character = load_image('adventurer_sprite_sheet_v1.1.png')
 
 
 def handle_events():
-    global running, dir
+    global running, dirx, diry
 
     events = get_events()
     for event in events:
@@ -15,30 +15,42 @@ def handle_events():
             running = False
         elif event.type == SDL_KEYDOWN:
             if event.key == SDLK_RIGHT:
-                dir += 1
+                dirx += 1
             elif event.key == SDLK_LEFT:
-                dir -= 1
+                dirx -= 1
+            elif event.key == SDLK_UP:
+                diry += 1
+            elif event.key == SDLK_DOWN:
+                diry -= 1
             elif event.key == SDLK_ESCAPE:
                 running = False
         elif event.type == SDL_KEYUP:
             if event.key == SDLK_RIGHT:
-                dir -= 1
+                dirx -= 1
             elif event.key == SDLK_LEFT:
-                dir += 1
+                dirx += 1
+            elif event.key == SDLK_UP:
+                diry -= 1
+            elif event.key == SDLK_DOWN:
+                diry += 1
 
 running = True
 x = 800 // 2
+y = 90
+
 frame = 0
-dir = 0
+dirx = 0
+diry = 0
 
 while running:
     clear_canvas()
     bg.draw(400, 300)
-    character.clip_draw(frame*32,192,32,32,x,90,150,150)
+    character.clip_draw(frame*32,192,32,32,x,y,150,150)
     update_canvas()
     handle_events()
     frame = (frame + 1) % 8
-    x += dir * 10
+    x += dirx * 10
+    y += diry * 10
     delay(0.05)
 
 close_canvas()
